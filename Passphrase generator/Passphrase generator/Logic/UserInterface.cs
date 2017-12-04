@@ -15,6 +15,7 @@ namespace Passphrase_generator.Logic
         private int _choice;
         private int passwordLenght;
 
+
         public int Choice { get => _choice; set => _choice = value; }
 
         public void Start()
@@ -23,9 +24,15 @@ namespace Passphrase_generator.Logic
             showMenu();
             optionChosenAction();
             askForPasswordLenght();
-
+            generate();
 
         }
+
+        private void generate()
+        {
+            Password pass = new Password(Choice, passwordLenght);
+        }
+
         private void showMenu()
         {
             int consoleInput;
@@ -36,17 +43,14 @@ namespace Passphrase_generator.Logic
                 Console.Write("The value must be of integer type, try again: ");
             Choice = consoleInput;
         }
+
         private void optionChosenAction()
         {
             string currentlyWorkingOn = Enum.GetName(typeof(PasswordTypes), Choice);
-            switch (Choice)
-            {
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine($"Your choice is: {currentlyWorkingOn}");
 
-                    break;
-            }
+            Console.Clear();
+            Console.WriteLine($"Your choice is: {currentlyWorkingOn}");
+
         }
 
         private void askForPasswordLenght()
@@ -58,10 +62,10 @@ namespace Passphrase_generator.Logic
                 Console.Write("The value must be of integer type, try again: ");
             passwordLenght = consoleInput;
 
-            if(passwordLenght <= 0 || passwordLenght >= 30)
+            if(passwordLenght <= 0 || passwordLenght > 30)
             {
-                Console.WriteLine("Your password lenght is too short/long, setting to 7");
-                passwordLenght = 7;
+                Console.WriteLine("Your password lenght is too short/long, setting to 30");
+                passwordLenght = 30;
             }
         }
     }
