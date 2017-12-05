@@ -38,6 +38,7 @@ namespace Passphrase_generator.Logic
             int consoleInput;
             Console.WriteLine("Welcome to password generator by Perki, you have following password types to choose:\n" +
                 "1. Number only\n" +
+                "2. Characters and numbers combined\n" +
                 "CHOOSE ONE BY TYPING A NUMBER");
             while (!int.TryParse(Console.ReadLine(), out consoleInput))
                 Console.Write("The value must be of integer type, try again: ");

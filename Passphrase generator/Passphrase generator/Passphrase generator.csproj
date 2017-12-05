@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\Password.cs" />
+    <Compile Include="Logic\PasswordExtensionsMethods.cs" />
     <Compile Include="Logic\Program.cs" />
     <Compile Include="Logic\UserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
