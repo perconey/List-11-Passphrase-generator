@@ -9,6 +9,10 @@ namespace Passphrase_generator.Logic
 {
     class Password
     {
+        public enum Settings
+        {
+            IsUppercase = 0
+        }
         private string _passwordFinal;
         public string PasswordFinal{ set=> _passwordFinal = value; get=> _passwordFinal; }
         public StringBuilder Str { get => _str; set => _str = value; }
@@ -27,7 +31,12 @@ namespace Passphrase_generator.Logic
             }
         }
 
-        public Password(int type, int len)
+        //Settings - Enum "Setting" provides easier settings manipulation
+        // settings[0] = 1 user wants to generate all UPPERCASE passwords / 0 -> not
+        private char[] settings = new char[1];
+
+
+        public Password(int type, int len, char uppercase)
         {
             //lower case letters 97 - 122
             //numbers 48 - 57

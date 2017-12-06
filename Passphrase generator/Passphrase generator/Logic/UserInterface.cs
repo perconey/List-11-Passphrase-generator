@@ -14,6 +14,7 @@ namespace Passphrase_generator.Logic
         };
         private int _choice;
         private int passwordLenght;
+        private char uppercase;
 
 
         public int Choice { get => _choice; set => _choice = value; }
@@ -30,7 +31,7 @@ namespace Passphrase_generator.Logic
 
         private void generate()
         {
-            Password pass = new Password(Choice, passwordLenght);
+            Password pass = new Password(Choice, passwordLenght, uppercase);
         }
 
         private void showMenu()
@@ -43,8 +44,30 @@ namespace Passphrase_generator.Logic
             while (!int.TryParse(Console.ReadLine(), out consoleInput))
                 Console.Write("The value must be of integer type, try again: ");
             Choice = consoleInput;
+
+            if(Choice == 2)
+            {
+                SubMenu();
+            }
         }
 
+        private void SubMenu()
+        {
+            Console.Clear();
+            char consoleInput;
+            Console.WriteLine("You have chosen option 2, now maintain settings listed below:\n" +
+                "Do you want your passphrases to be entirely UPPERCASE?\n" +
+                "Choose one (y/n)");
+            consoleInput = Console.ReadKey().KeyChar;
+
+            if(consoleInput != 'y' || consoleInput != 'n')
+            {
+                Console.WriteLine("You haven't provided the right character nor y ,n: SETTING TO -> No");
+                consoleInput = 'n';
+            }
+
+            uppercase = consoleInput;
+        }
         private void optionChosenAction()
         {
             string currentlyWorkingOn = Enum.GetName(typeof(PasswordTypes), Choice);
