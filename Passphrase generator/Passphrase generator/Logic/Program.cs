@@ -14,7 +14,10 @@ namespace Passphrase_generator
             UserInterface gui = new UserInterface();
 
             gui.Start();
-
+            foreach(var el in PasswordStore.Passwords)
+            {
+                Console.WriteLine(el);
+            }
             Console.ReadLine();
         }
     }

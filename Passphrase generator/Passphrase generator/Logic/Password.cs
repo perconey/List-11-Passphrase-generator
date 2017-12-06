@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Passphrase_generator.Logic;
 
 namespace Passphrase_generator.Logic
 {
@@ -59,7 +60,7 @@ namespace Passphrase_generator.Logic
                     {
                         Str.Append((char)el);
                     }
-                    Console.WriteLine(Str.ToString());
+                    PasswordStore.Passwords.Add(Str.ToString());
                     break;
             }
         }
