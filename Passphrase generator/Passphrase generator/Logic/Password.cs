@@ -36,8 +36,11 @@ namespace Passphrase_generator.Logic
         private char[] settings = new char[1];
 
 
-        public Password(int type, int len, char uppercase)
+        public Password(int type, int len, char[] set)
         {
+            //handle settings
+            settings = set;
+
             //lower case letters 97 - 122
             //numbers 48 - 57
             switch(type)
@@ -69,9 +72,16 @@ namespace Passphrase_generator.Logic
                     {
                         Str.Append((char)el);
                     }
+
+                    if(settings[(int)Settings.IsUppercase] == 'y')
+                    {
+                        PasswordStore.Passwords.Add(Str.ToString().ToUpper());
+                        break;
+                    }
                     PasswordStore.Passwords.Add(Str.ToString());
                     break;
             }
         }
+
     }
 }

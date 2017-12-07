@@ -14,32 +14,46 @@ namespace Passphrase_generator.Logic
         };
         private int _choice;
         private int passwordLenght;
-        private char uppercase;
+
+        // 0 - upperCase 
+        private char[] settings = new char[1];
 
 
         public int Choice { get => _choice; set => _choice = value; }
 
         public void Start()
         {
-            Console.WriteLine();
-            showMenu();
-            optionChosenAction();
-            askForPasswordLenght();
-            generate();
+            do
+            {
+
+                Console.WriteLine();
+                showMenu();
+                CurrentlyWorkingOnStringRecognize();
+                askForPasswordLenght();
+                generate();
+
+            } while (true);
 
         }
 
+        /// <summary>
+        /// Generates password for current properties
+        /// </summary>
         private void generate()
         {
-            Password pass = new Password(Choice, passwordLenght, uppercase);
+            Password pass = new Password(Choice, passwordLenght, settings);
         }
 
+        /// <summary>
+        /// Shows menu and sets choice to user choice from console input
+        /// </summary>
         private void showMenu()
         {
             int consoleInput;
             Console.WriteLine("Welcome to password generator by Perki, you have following password types to choose:\n" +
                 "1. Number only\n" +
                 "2. Characters and numbers combined\n" +
+                "9. Database settings\n" +
                 "CHOOSE ONE BY TYPING A NUMBER");
             while (!int.TryParse(Console.ReadLine(), out consoleInput))
                 Console.Write("The value must be of integer type, try again: ");
@@ -50,7 +64,9 @@ namespace Passphrase_generator.Logic
                 SubMenu();
             }
         }
-
+        /// <summary>
+        /// Submenu for choice 2 -> letters&numbers
+        /// </summary>
         private void SubMenu()
         {
             Console.Clear();
@@ -66,9 +82,13 @@ namespace Passphrase_generator.Logic
                 consoleInput = 'n';
             }
 
-            uppercase = consoleInput;
+            settings[0] = consoleInput;
         }
-        private void optionChosenAction()
+
+        /// <summary>
+        /// Recognizes on which type of password, are you working on
+        /// </summary>
+        private void CurrentlyWorkingOnStringRecognize()
         {
             string currentlyWorkingOn = Enum.GetName(typeof(PasswordTypes), Choice);
 
@@ -76,7 +96,9 @@ namespace Passphrase_generator.Logic
             Console.WriteLine($"Your choice is: {currentlyWorkingOn}");
 
         }
-
+        /// <summary>
+        /// Asks user about lenght on next password to be generated and saves in into passwordLenght property
+        /// </summary>
         private void askForPasswordLenght()
         {
             int consoleInput;
