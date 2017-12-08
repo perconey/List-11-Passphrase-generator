@@ -52,6 +52,9 @@ namespace Passphrase_generator.Logic
                         len--;
                     }
                     PasswordFinal = Str.ToString();
+                    PasswordStore.Passwords.Add(PasswordFinal);
+                    Console.WriteLine("yo");
+                    Console.ReadLine();
                     break;
                 case 2:
                     while (len > 0)

@@ -63,6 +63,43 @@ namespace Passphrase_generator.Logic
             {
                 SubMenu();
             }
+            if(Choice == 9)
+            {
+                DatabaseSettings();
+            }
+        }
+
+        private void DatabaseSettings()
+        {
+            do
+            {
+                Console.Clear();
+                char consoleInput;
+                Console.WriteLine("Choose desired number to make changes to entrie password database:\n" +
+                    "1. Make entire database UPPERCASE\n" +
+                    "9. Show all stored passwords\n" +
+                    "Press e to exit");
+                consoleInput = Console.ReadKey().KeyChar;
+
+                switch (consoleInput)
+                {
+                    case '1':
+                        PasswordStore.Passwords = PasswordStore.Passwords.AllPwToUpper();
+                        Console.WriteLine("Cool and good");
+                        break;
+                    case '9':
+                        PasswordStore.ShowPasswords();
+
+                        break;
+                    case 'e':
+                        Console.Clear();
+                        Start();
+                        break;
+                    default:
+                        Console.WriteLine("What do you mean?");
+                        break;
+                }
+            } while (true);
         }
         /// <summary>
         /// Submenu for choice 2 -> letters&numbers
@@ -107,7 +144,7 @@ namespace Passphrase_generator.Logic
             while (!int.TryParse(Console.ReadLine(), out consoleInput))
                 Console.Write("The value must be of integer type, try again: ");
             passwordLenght = consoleInput;
-
+            Console.Clear();
             if(passwordLenght <= 0 || passwordLenght > 30)
             {
                 Console.WriteLine("Your password lenght is too short/long, setting to 30");
