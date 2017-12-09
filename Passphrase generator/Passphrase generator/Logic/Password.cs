@@ -53,8 +53,6 @@ namespace Passphrase_generator.Logic
                     }
                     PasswordFinal = Str.ToString();
                     PasswordStore.Passwords.Add(PasswordFinal);
-                    Console.WriteLine("yo");
-                    Console.ReadLine();
                     break;
                 case 2:
                     while (len > 0)
@@ -81,8 +79,32 @@ namespace Passphrase_generator.Logic
                         PasswordStore.Passwords.Add(Str.ToString().ToUpper());
                         break;
                     }
-                    PasswordStore.Passwords.Add(Str.ToString());
+                    PasswordFinal = Str.ToString();
+                    PasswordStore.Passwords.Add(PasswordFinal);
                     break;
+
+                case 3:
+                    while (len > 0)
+                    {
+
+                        RandomNumList.Add(GetRandomNumber(97, 122));
+
+                        len--;
+                    }
+                    foreach (var el in RandomNumList)
+                    {
+                        Str.Append((char)el);
+                    }
+
+                    if (settings[(int)Settings.IsUppercase] == 'y')
+                    {
+                        PasswordStore.Passwords.Add(Str.ToString().ToUpper());
+                        break;
+                    }
+                    PasswordFinal = Str.ToString();
+                    PasswordStore.Passwords.Add(PasswordFinal);
+                    break;
+
             }
         }
 

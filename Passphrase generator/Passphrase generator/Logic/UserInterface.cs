@@ -53,13 +53,14 @@ namespace Passphrase_generator.Logic
             Console.WriteLine("Welcome to password generator by Perki, you have following password types to choose:\n" +
                 "1. Number only\n" +
                 "2. Characters and numbers combined\n" +
+                "3. Characters only\n" +
                 "9. Database settings\n" +
                 "CHOOSE ONE BY TYPING A NUMBER");
             while (!int.TryParse(Console.ReadLine(), out consoleInput))
                 Console.Write("The value must be of integer type, try again: ");
             Choice = consoleInput;
 
-            if(Choice == 2)
+            if(Choice == 2 || Choice == 3)
             {
                 SubMenu();
             }
@@ -88,6 +89,7 @@ namespace Passphrase_generator.Logic
                         Console.WriteLine("Cool and good");
                         break;
                     case '9':
+                        Console.WriteLine();
                         PasswordStore.ShowPasswords();
 
                         break;
@@ -108,7 +110,7 @@ namespace Passphrase_generator.Logic
         {
             Console.Clear();
             char consoleInput;
-            Console.WriteLine("You have chosen option 2, now maintain settings listed below:\n" +
+            Console.WriteLine("You have chosen option with characters, now maintain settings listed below:\n" +
                 "Do you want your passphrases to be entirely UPPERCASE?\n" +
                 "Choose one (y/n)");
             consoleInput = Console.ReadKey().KeyChar;
