@@ -5,19 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql;
 using MySql.Data.MySqlClient;
+using MySql.Data.Entity;
+using System.Data.Entity;
 
 namespace Passphrase_generator.DatabaseFetchLogic
 {
-    class DatabaseFetch
+    class DatabaseFetch : DbContext
     {
         private static string connectionString;
 
-        MySqlConnection conn = new MySqlConnection(connectionString);
-        public DatabaseFetch()
+        public DatabaseFetch() : base("MySqlDB")
         {
-            connectionString = "server=localhost;database=passgen;userid=root;password=sqlmc123;";
-            conn.Open();
-
+            this.Configuration.LazyLoadingEnabled = false;
         }
+    }
     }
 }
