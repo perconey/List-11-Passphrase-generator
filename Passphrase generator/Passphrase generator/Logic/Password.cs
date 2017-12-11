@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Passphrase_generator.Logic;
+using PassphraseGenerator.Enums;
 
 namespace Passphrase_generator.Logic
 {
-    class Password
+    public class Password
     {
-        public enum Settings
-        {
-            IsUppercase = 0
-        }
+        
         private string _passwordFinal;
         public string PasswordFinal{ set=> _passwordFinal = value; get=> _passwordFinal; }
         public StringBuilder Str { get => _str; set => _str = value; }
