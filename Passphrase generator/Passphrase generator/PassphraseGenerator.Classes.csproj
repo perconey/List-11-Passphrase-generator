@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStorageLogic\WordsStorage.cs" />
+    <Compile Include="Enums\PasswordType.cs" />
     <Compile Include="Enums\Settings.cs" />
     <Compile Include="Logic\DatabaseWord.cs" />
     <Compile Include="Logic\Password.cs" />
@@ -71,8 +73,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataStorageLogic\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

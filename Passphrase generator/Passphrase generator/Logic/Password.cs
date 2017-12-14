@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Passphrase_generator.Logic;
 using PassphraseGenerator.Enums;
+using PassphraseGenerator.Logic;
 
 namespace Passphrase_generator.Logic
 {
@@ -43,7 +44,7 @@ namespace Passphrase_generator.Logic
             //numbers 48 - 57
             switch(type)
             {
-                case 1:
+                case (int)PasswordType.NumberOnly:
                     while(len > 0)
                     {
                         Str.Append(GetRandomNumber(0, 9).ToString());
@@ -52,7 +53,7 @@ namespace Passphrase_generator.Logic
                     PasswordFinal = Str.ToString();
                     PasswordStore.Passwords.Add(PasswordFinal);
                     break;
-                case 2:
+                case (int)PasswordType.CharAndNum:
                     while (len > 0)
                     {
                         var random = GetRandomNumber(0, 100);
@@ -81,7 +82,7 @@ namespace Passphrase_generator.Logic
                     PasswordStore.Passwords.Add(PasswordFinal);
                     break;
 
-                case 3:
+                case (int)PasswordType.CharOnly:
                     while (len > 0)
                     {
 
@@ -102,7 +103,12 @@ namespace Passphrase_generator.Logic
                     PasswordFinal = Str.ToString();
                     PasswordStore.Passwords.Add(PasswordFinal);
                     break;
-
+                case (int)PasswordType.Word:
+                    var dbw = new DatabaseWord(len);
+                    PasswordStore.Passwords.Add(dbw.ToString());
+                    break;
+                case (int)PasswordType.WordAndNum:
+                    break;
             }
         }
 

@@ -12,15 +12,8 @@ namespace Passphrase_generator
     {
         static void Main(string[] args)
         {
-            using (var db = new passgenmContext())
-            {
-                foreach (var item in db.Words)
-                {
-                    Console.WriteLine(item.word);
-                }
-            }
-            Console.Read();
-                UserInterface gui = new UserInterface();
+
+            UserInterface gui = new UserInterface();
 
             gui.Start();
             Console.ReadLine();

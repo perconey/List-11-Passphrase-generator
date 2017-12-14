@@ -54,13 +54,16 @@ namespace Passphrase_generator.Logic
                 "1. Number only\n" +
                 "2. Characters and numbers combined\n" +
                 "3. Characters only\n" +
+                "4. Real words\n" +
+                "5. Real words + numbers\n" +
                 "9. Database settings\n" +
                 "CHOOSE ONE BY TYPING A NUMBER");
             while (!int.TryParse(Console.ReadLine(), out consoleInput))
                 Console.Write("The value must be of integer type, try again: ");
             Choice = consoleInput;
 
-            if(Choice == 2 || Choice == 3)
+            //Shows Submenu for every alphanumeric password option
+            if(Choice == 2 || Choice == 3 || Choice == 4|| Choice == 5)
             {
                 SubMenu();
             }
