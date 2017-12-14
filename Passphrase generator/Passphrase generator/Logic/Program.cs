@@ -1,4 +1,5 @@
 ﻿using Passphrase_generator.Logic;
+using PassphraseGenerator.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,15 @@ namespace Passphrase_generator
     {
         static void Main(string[] args)
         {
-            UserInterface gui = new UserInterface();
+            using (var db = new passgenmContext())
+            {
+                foreach (var item in db.Words)
+                {
+                    Console.WriteLine(item.word);
+                }
+            }
+            Console.Read();
+                UserInterface gui = new UserInterface();
 
             gui.Start();
             Console.ReadLine();

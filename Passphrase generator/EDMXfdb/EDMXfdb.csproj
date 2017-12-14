@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF9F0F4A-ADEF-46FA-A970-F3312BE922D3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>PassphraseGenerator</RootNamespace>
-    <AssemblyName>Passphrase generator</AssemblyName>
+    <ProjectGuid>{253EF53E-BE65-42CB-B4D9-8E453C856C43}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EDMXfdb</RootNamespace>
+    <AssemblyName>EDMXfdb</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,30 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Settings.cs" />
-    <Compile Include="Logic\DatabaseWord.cs" />
-    <Compile Include="Logic\Password.cs" />
-    <Compile Include="Logic\PasswordExtensionsMethods.cs" />
-    <Compile Include="Logic\PasswordStore.cs" />
-    <Compile Include="Logic\Program.cs" />
-    <Compile Include="Logic\UserInterface.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PassphraseGenerator.DataModel\PassphraseGenerator.DataModel.csproj">
-      <Project>{f6f7da1d-89b3-42a4-b0b5-94da13e5a68b}</Project>
-      <Name>PassphraseGenerator.DataModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataStorageLogic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
