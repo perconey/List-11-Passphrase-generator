@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Passphrase_generator.Logic;
-using PassphraseGenerator.Enums;
+﻿using PassphraseGenerator.Enums;
 using PassphraseGenerator.Logic;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Passphrase_generator.Logic
 {
@@ -16,11 +13,13 @@ namespace Passphrase_generator.Logic
         public string PasswordFinal{ set=> _passwordFinal = value; get=> _passwordFinal; }
         public StringBuilder Str { get => _str; set => _str = value; }
         public List<int> RandomNumList { get => _randomList; set => _randomList = value; }
+        public char[] Settings { get => _settings; set => _settings = value; }
 
         private StringBuilder _str = new StringBuilder();
 
         private static readonly Random getrandom = new Random();
         private List<int> _randomList = new List<int>();
+
         private static readonly object syncLock = new object();
         public static int GetRandomNumber(int min, int max)
         {
@@ -32,17 +31,18 @@ namespace Passphrase_generator.Logic
 
         //Settings - Enum "Setting" provides easier settings manipulation
         // settings[0] = 1 user wants to generate all UPPERCASE passwords / 0 -> not
-        private char[] settings = new char[1];
+        private char[] _settings = new char[1];
 
 
         public Password(int type, int len, char[] set)
         {
             //handle settings
-            settings = set;
+            _settings = set;
 
             //lower case letters 97 - 122
             //numbers 48 - 57
-            switch(type)
+            Str.Clear();
+            switch (type)
             {
                 case (int)PasswordType.NumberOnly:
                     while(len > 0)
@@ -93,6 +93,22 @@ namespace Passphrase_generator.Logic
                     PasswordFinal = dbw.Word;
                     break;
                 case (int)PasswordType.WordAndNum:
+                    if(len <= 6)
+                    {
+                        for (int i = 0 ; i < len ; i++)
+                        {
+                            Str.Append(GetRandomNumber(0, 9).ToString());
+                        }
+                        PasswordFinal = Str.ToString();
+                        break;
+                    }
+                    var wan = new DatabaseWord((len - 4));
+                    Str.Append(wan.Word);
+                    for(int i = 0; i < 4; i++)
+                    {
+                        Str.Append(GetRandomNumber(0, 9).ToString());
+                    }
+                    PasswordFinal = Str.ToString();
                     break;
             }
             ApplySettings();
@@ -102,7 +118,7 @@ namespace Passphrase_generator.Logic
 
         private void ApplySettings()
         {
-            if (settings[(int)Settings.IsUppercase] == 'y')
+            if (_settings[(int)SettingsIds.IsUppercase] == 'y')
             {
                 PasswordFinal = PasswordFinal.ToUpper();
             }

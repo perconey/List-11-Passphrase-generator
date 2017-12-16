@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PassphraseGenerator.Enums
+﻿namespace PassphraseGenerator.Enums
 {
-        public enum Settings
+    public enum SettingsIds
         {
             IsUppercase = 0
         }

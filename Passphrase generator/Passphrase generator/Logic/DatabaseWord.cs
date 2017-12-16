@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using PassphraseGenerator.DataStorageLogic;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PassphraseGenerator.DataModel;
-using PassphraseGenerator.DataStorageLogic;
 
 namespace PassphraseGenerator.Logic
 {

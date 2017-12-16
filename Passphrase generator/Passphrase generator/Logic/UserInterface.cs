@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PassphraseGenerator.Enums;
+using System;
 
 namespace Passphrase_generator.Logic
 {
     class UserInterface
     {
-        public enum PasswordTypes
-        {
-            NumberOnly = 1
-        };
         private int _choice;
         private int passwordLenght;
 
@@ -49,7 +42,8 @@ namespace Passphrase_generator.Logic
         /// </summary>
         private void showMenu()
         {
-            int consoleInput;
+            Console.Clear();
+            char consoleInput;
             Console.WriteLine("Welcome to password generator by Perki, you have following password types to choose:\n" +
                 "1. Number only\n" +
                 "2. Characters and numbers combined\n" +
@@ -58,12 +52,18 @@ namespace Passphrase_generator.Logic
                 "5. Real words + numbers\n" +
                 "9. Database settings\n" +
                 "CHOOSE ONE BY TYPING A NUMBER");
-            while (!int.TryParse(Console.ReadLine(), out consoleInput))
-                Console.Write("The value must be of integer type, try again: ");
-            Choice = consoleInput;
+
+                consoleInput = Console.ReadKey().KeyChar;
+                if (!Char.IsNumber(consoleInput))
+                {
+                    showMenu();
+                }
+            int tempint;
+            int.TryParse(consoleInput.ToString(), out tempint);
+            Choice = tempint;
 
             //Shows Submenu for every alphanumeric password option
-            if(Choice == 2 || Choice == 3 || Choice == 4|| Choice == 5)
+            if(Choice == 2 || Choice == 3 || Choice == 4 || Choice == 5)
             {
                 SubMenu();
             }
@@ -118,7 +118,7 @@ namespace Passphrase_generator.Logic
                 "Choose one (y/n)");
             consoleInput = Console.ReadKey().KeyChar;
 
-            if(consoleInput != 'y' || consoleInput != 'n')
+            if(consoleInput != 'y' && consoleInput != 'n')
             {
                 Console.WriteLine("You haven't provided the right character nor y ,n: SETTING TO -> No");
                 consoleInput = 'n';
@@ -132,7 +132,8 @@ namespace Passphrase_generator.Logic
         /// </summary>
         private void CurrentlyWorkingOnStringRecognize()
         {
-            string currentlyWorkingOn = Enum.GetName(typeof(PasswordTypes), Choice);
+            PasswordType enumDisplayStatus = (PasswordType)Choice;
+            string currentlyWorkingOn = enumDisplayStatus.ToString();
 
             Console.Clear();
             Console.WriteLine($"Your choice is: {currentlyWorkingOn}");
