@@ -51,7 +51,6 @@ namespace Passphrase_generator.Logic
                         len--;
                     }
                     PasswordFinal = Str.ToString();
-                    PasswordStore.Passwords.Add(PasswordFinal);
                     break;
                 case (int)PasswordType.CharAndNum:
                     while (len > 0)
@@ -72,14 +71,7 @@ namespace Passphrase_generator.Logic
                     {
                         Str.Append((char)el);
                     }
-
-                    if(settings[(int)Settings.IsUppercase] == 'y')
-                    {
-                        PasswordStore.Passwords.Add(Str.ToString().ToUpper());
-                        break;
-                    }
                     PasswordFinal = Str.ToString();
-                    PasswordStore.Passwords.Add(PasswordFinal);
                     break;
 
                 case (int)PasswordType.CharOnly:
@@ -94,21 +86,25 @@ namespace Passphrase_generator.Logic
                     {
                         Str.Append((char)el);
                     }
-
-                    if (settings[(int)Settings.IsUppercase] == 'y')
-                    {
-                        PasswordStore.Passwords.Add(Str.ToString().ToUpper());
-                        break;
-                    }
                     PasswordFinal = Str.ToString();
-                    PasswordStore.Passwords.Add(PasswordFinal);
                     break;
                 case (int)PasswordType.Word:
                     var dbw = new DatabaseWord(len);
-                    PasswordStore.Passwords.Add(dbw.ToString());
+                    PasswordFinal = dbw.Word;
                     break;
                 case (int)PasswordType.WordAndNum:
                     break;
+            }
+            ApplySettings();
+
+            PasswordStore.Passwords.Add(PasswordFinal);
+        }
+
+        private void ApplySettings()
+        {
+            if (settings[(int)Settings.IsUppercase] == 'y')
+            {
+                PasswordFinal = PasswordFinal.ToUpper();
             }
         }
 
